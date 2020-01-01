@@ -1,0 +1,40 @@
+filetype:bak 
+filetype:cfg 
+filetype:conf 
+filetype:config 
+filetype:dat 
+filetype:ini 
+filetype:log 
+filetype:reg 
+filetype:sql 
+filetype:ldb
+filetype:mdb
+"password" filetype:xls
+filetype:xls
+filetype:url +inurl:"ftp://"  +inurl:"@"
+intitle:"Index of" (pwd|passw|admin|db|conf|inc|sec)
+intitle:"Index of" modified
+("enable password" | "enable secret")
+intitle:"phpinfo" 
+ext:pwd 
+ext:ini
+inurl:"editor/list.asp" | inurl:"database_editor.asp" | inurl:"login.asa" "are set"
+inurl:php inurl:hlstats intext:"Server Username"
+server-dbs "intitle:index of"
+site:extremetracking.com inurl:"login="
+[WFClient] Password= filetype:ica
+ext:passwd
+ext:yml (passw|secret|database|config)
+filetype:netrc 
+filetype:pass 
+filetype:pem 
+filetype:php~ (pass|passwd|password|dbpass|db_pass|pwd)
+filetype:properties
+filetype:pwd 
+filetype:pwl 
+filetype:sql
+filetype:xls username password email
+inurl:admin filetype:asp 
+inurl:cgi-bin inurl:calendar.cfg
+inurl:config.php dbuname dbpass
+inurl:filezilla.xml -cvs
