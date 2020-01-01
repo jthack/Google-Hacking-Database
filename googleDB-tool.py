@@ -55,9 +55,9 @@ def get_strings(src_file):
         res = []
     return res
 
-def append_sitename(strs,site):
-    """adding site name to strings"""
-    strs = [x+' site:'+site for x in strs]
+def append_query_string(strs,query_string):
+    """adding query_string to strings"""
+    strs = [x+' '+query_string for x in strs]
     return strs
 
 def gen_google_query(strs):
@@ -101,7 +101,7 @@ def main():
               epilog="SecPoint.com Google Penetration Testing Hack Database v. "+VERSION)
     parser.add_option("-o", "--output", dest="filename",
                       help="save output to file", metavar="FILE")
-    parser.add_option("-s", "--site", dest="sitename",
+    parser.add_option("-s", "--sting", dest="querystring",
                       help="generate queries for the SITE", metavar="SITE")
     parser.add_option("-m", "--multiple", dest="listfilename",
                       help="generate queries for multiple sites listed in LISTFILE", metavar="LISTFILE")
@@ -123,7 +123,7 @@ def main():
         exit()
         #parser.error("please set source file (could be found in 'db' dir)")
     #all options 
-    site_name = options.sitename
+    query_string = options.querystring
     gen_html = options.gen_html
     gen_query = options.gen_query
     out_file = options.filename
@@ -139,11 +139,11 @@ def main():
         print "Can't get data from your source file!"
         exit()
     queries = []
-    if site_name and multlist_file:
+    if query_string and multlist_file:
         print "Please use -s OR -m switches alone!"
         exit()    
-    if site_name:
-        strs = append_sitename(strs,site_name)
+    if query_string:
+        strs = append_query_string(strs,query_string)
     if multlist_file:
         if not os.path.isfile(multlist_file):
             print "Could not find file from -m switch!"
@@ -151,7 +151,7 @@ def main():
         mlst = open(multlist_file).read().split('\n')
         strsnew = [] #using multiple sites to create queries
         for i in mlst:
-            strsnew.extend(append_sitename(strs,i))
+            strsnew.extend(append_query_string(strs,i))
         strs = strsnew    
     if gen_query:
         [strs,queries] = gen_google_query(strs)
